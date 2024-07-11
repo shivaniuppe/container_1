@@ -1,0 +1,15 @@
+version: "3"
+services:
+  container_1:
+    platform: linux/amd64
+    image: gcr.io/cloud-428420/container_1:latest
+    container_name: container_1
+    ports:
+      - "6000:6000"
+    networks:
+      - app-network
+    volumes:
+      - .:/data
+networks:
+  app-network:
+    driver: bridge
