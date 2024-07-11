@@ -7,7 +7,7 @@ const app = express();
 const port = 6000;
 app.use(express.json());
 
-const CONTAINER_2_URL = 'http://container-2-service:81/calculate';
+const CONTAINER_2_URL = 'http://container-2-service:80/calculate';
 
 
 app.post('/calculate', async (req, res) => {
