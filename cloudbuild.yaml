@@ -4,4 +4,6 @@ steps:
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/cloud-428420/container_1:latest"]
 images:
-  - "gcr.io/$PROJECT_ID/container_1:latest"
+  - "gcr.io/cloud-428420/container_1:latest"
+options:
+  logging: CLOUD_LOGGING_ONLY
