@@ -45,7 +45,7 @@ app.post('/store-file', (req, res) => {
         return res.status(400).json({ "file": null, "error": "Invalid JSON input." });
     }
     const filePath = path.join('/data', file);
-    fs.writeFile(filePath, data, (err) => {
+    fs.writeFile(filePath, data.replace(/\r\n/g, '\n'), (err) => {
         if (err) {
             return res.status(500).json({ "file": file, "error": "Error while storing the file to the storage." });
         }
