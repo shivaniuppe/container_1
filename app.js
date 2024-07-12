@@ -7,7 +7,7 @@ const app = express();
 const port = 6000;
 app.use(express.json());
 
-const CONTAINER_2_URL = 'http://35.225.235.245/calculate';
+const CONTAINER_2_URL = 'http://container-2-service/calculate';
 
 app.post('/calculate', async (req, res) => {
     const data = req.body;
@@ -18,7 +18,7 @@ app.post('/calculate', async (req, res) => {
 
     const fileName = data.file;
     const product = data.product;
-
+    console.log(fileName);
     if (!fileName) {
         return res.status(400).json({"file": null, "error": "Invalid JSON input."});
     }
@@ -26,7 +26,6 @@ app.post('/calculate', async (req, res) => {
     if (!fs.existsSync(path.join('/shivani_PV_dir', fileName))) {
         return res.status(404).json({"file": fileName, "error": "File not found."});
     }
-    console.log(fileName);
 
     try {
         const response = await axios.post(CONTAINER_2_URL, data);
