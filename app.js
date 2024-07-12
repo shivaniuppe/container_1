@@ -35,7 +35,7 @@ app.post('/calculate', async (req, res) => {
         if (error.response && error.response.data) {
             res.status(error.response.status).json(error.response.data);
         } else {
-            res.status(500).json({"error": "Internal Server Error"});
+            res.status(500).json({"error": "Internal Server Errorsssss"});
         }
     }
 });
