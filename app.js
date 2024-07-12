@@ -7,7 +7,7 @@ const app = express();
 const port = 6000;
 app.use(express.json());
 
-const CONTAINER_2_URL = 'http://34.171.252.225/calculate';
+const CONTAINER_2_URL = 'http://35.225.235.245/calculate';
 
 app.post('/calculate', async (req, res) => {
     const data = req.body;
@@ -18,7 +18,7 @@ app.post('/calculate', async (req, res) => {
 
     const fileName = data.file;
     const product = data.product;
-
+    console.log(fileName);
     if (!fileName) {
         return res.status(400).json({"file": null, "error": "Invalid JSON input."});
     }
