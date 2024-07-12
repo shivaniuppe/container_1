@@ -26,6 +26,7 @@ app.post('/calculate', async (req, res) => {
     if (!fs.existsSync(path.join('/shivani_PV_dir', fileName))) {
         return res.status(404).json({"file": fileName, "error": "File not found."});
     }
+    console.log(fileName);
 
     try {
         const response = await axios.post(CONTAINER_2_URL, data);
