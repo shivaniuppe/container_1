@@ -23,7 +23,7 @@ app.post('/calculate', async (req, res) => {
         return res.status(400).json({"file": null, "error": "Invalid JSON input."});
     }
 
-    if (!fs.existsSync(path.join('/data', fileName))) {
+    if (!fs.existsSync(path.join('/shivani_PV_dir', fileName))) {
         return res.status(404).json({"file": fileName, "error": "File not found."});
     }
 
@@ -45,7 +45,7 @@ app.post('/store-file', (req, res) => {
     if (!file || !data) {
         return res.status(400).json({ "file": null, "error": "Invalid JSON input." });
     }
-    const filePath = path.join('/data', file);
+    const filePath = path.join('/shivani_PV_dir', file);
     fs.writeFile(filePath, data, (err) => {
         if (err) {
             console.error("Error storing file:", err);
