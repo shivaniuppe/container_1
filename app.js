@@ -31,6 +31,7 @@ app.post('/calculate', async (req, res) => {
         const response = await axios.post(CONTAINER_2_URL, data);
         res.json(response.data);
     } catch (error) {
+        console.error("Error communicating with container 2:", error);
         if (error.response && error.response.data) {
             res.status(error.response.status).json(error.response.data);
         } else {
@@ -47,15 +48,13 @@ app.post('/store-file', (req, res) => {
     const filePath = path.join('/data', file);
     fs.writeFile(filePath, data, (err) => {
         if (err) {
+            console.error("Error storing file:", err);
             return res.status(500).json({ "file": file, "error": "Error while storing the file to the storage." });
         }
         res.json({ "file": file, "message": "Success." });
     });
 });
 
-
 app.listen(port, () => {
     console.log(`Container 1 listening on port: ${port}`);
 });
-
-
