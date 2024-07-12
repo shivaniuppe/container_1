@@ -7,8 +7,7 @@ const app = express();
 const port = 6000;
 app.use(express.json());
 
-const CONTAINER_2_URL = 'http://container-2-service:80/calculate';
-
+const CONTAINER_2_URL = 'http://container-2-service:6001/calculate';
 
 app.post('/calculate', async (req, res) => {
     const data = req.body;
@@ -35,7 +34,7 @@ app.post('/calculate', async (req, res) => {
         if (error.response && error.response.data) {
             res.status(error.response.status).json(error.response.data);
         } else {
-            res.status(500).json({"error": "Internal Server Errorsssss"});
+            res.status(500).json({"error": "Internal Server Error"});
         }
     }
 });
@@ -46,7 +45,7 @@ app.post('/store-file', (req, res) => {
         return res.status(400).json({ "file": null, "error": "Invalid JSON input." });
     }
     const filePath = path.join('/data', file);
-    fs.writeFile(filePath, data.replace(/\r\n/g, '\n'), (err) => {
+    fs.writeFile(filePath, data, (err) => {
         if (err) {
             return res.status(500).json({ "file": file, "error": "Error while storing the file to the storage." });
         }
@@ -54,7 +53,9 @@ app.post('/store-file', (req, res) => {
     });
 });
 
+
 app.listen(port, () => {
     console.log(`Container 1 listening on port: ${port}`);
 });
+
 
