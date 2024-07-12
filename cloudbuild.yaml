@@ -22,16 +22,6 @@ steps:
         # Get the GKE cluster credentials
         gcloud container clusters get-credentials [CLUSTER_NAME] --zone [CLUSTER_ZONE] --project [PROJECT_ID]
 
-  # Step 3: Update the deployment in GKE
-  - name: "gcr.io/cloud-builders/kubectl"
-    args:
-      [
-        "set",
-        "image",
-        "deployment/container-1-deployment",
-        "container-1=gcr.io/cloud-429207/container_1:latest",
-      ]
-
 images:
   - "gcr.io/cloud-429207/container_1:latest"
 
