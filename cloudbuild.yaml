@@ -20,15 +20,6 @@ steps:
       - "-c"
       - gcloud container clusters get-credentials gke-cluster --zone us-central1 --project cloud-429207
 
-  - name: "gcr.io/cloud-builders/kubectl"
-    args:
-      [
-        "set",
-        "image",
-        "deployment/container-1-deployment",
-        "container-1=gcr.io/cloud-429207/container_1:latest",
-      ]
-
 images:
   - "gcr.io/cloud-429207/container_1:latest"
 
